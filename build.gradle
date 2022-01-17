@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 group 'ru.netology'
@@ -8,13 +9,26 @@ version '1.0-SNAPSHOT'
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
+allure {
+    autoconfigure = true
+    version = '2.7.0'
+    useJUnit5 {
+        version = '2.7.0'
+    }
+}
+
 repositories {
+    jcenter()
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0';
+    testImplementation 'com.codeborne:selenide:6.2.0'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'org.postgresql:postgresql:42.3.1'
+    testImplementation 'mysql:mysql-connector-java:8.0.27'
+    testImplementation 'io.qameta.allure:allure-selenide:2.17.2'
 }
 
 test {
