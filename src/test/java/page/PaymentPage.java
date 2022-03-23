@@ -13,8 +13,8 @@ public class PaymentPage {
     private SelenideElement cardNumberField = $("[placeholder='0000 0000 0000 0000']");
     private SelenideElement monthField = $("[placeholder='08']");
     private SelenideElement yearField = $("[placeholder='22']");
-    private SelenideElement ownerNameField = $$("[class='input__control']").get(3);
-    private SelenideElement cvcField = $("[placeholder='999']");
+    private SelenideElement holderNameField = $$("[class='input__control']").get(3);
+    private SelenideElement cvsField = $("[placeholder='999']");
     private SelenideElement continueButton = $$("[class='button button_view_extra button_size_m button_theme_alfa-on-white']").get(1);
     private SelenideElement bankApproved = $(withText("Операция одобрена Банком."));
     private SelenideElement bankDeclined = $(withText("Ошибка! Банк отказал в проведении операции."));
@@ -23,12 +23,12 @@ public class PaymentPage {
     private SelenideElement cardExpired = $(withText("Истёк срок действия карты"));
     private SelenideElement requiredField = $(withText("Поле обязательно для заполнения"));
 
-    public void fillOutRequiredFields(String cardNumber, String month, String year, String owner, String cvc){
+    public void fillOutRequiredFields(String cardNumber, String month, String year, String owner, String cvs){
         cardNumberField.setValue(cardNumber);
         monthField.setValue(month);
         yearField.setValue(year);
-        ownerNameField.setValue(owner);
-        cvcField.setValue(cvc);
+        holderNameField.setValue(owner);
+        cvsField.setValue(cvs);
         continueButton.click();
     }
 
@@ -46,14 +46,6 @@ public class PaymentPage {
 
     public void allFieldsShouldBeFilled(){
         requiredField.shouldBe(Condition.visible);
-    }
-
-    public void invalidExpirationDate(){
-        invalidCardExpirationDate.shouldBe(Condition.visible);
-    }
-
-    public void cardExpired(){
-        cardExpired.shouldBe(Condition.visible);
     }
 
 }
